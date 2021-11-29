@@ -42,7 +42,6 @@ function UploadProductPage() {
             <div style={{ textAlign: "center", marginBottom: "2rem" }}>
                 <h2>여행 상품 업로드</h2>
             </div>
-
             <Form>
                 {/* DropZone */}
 
