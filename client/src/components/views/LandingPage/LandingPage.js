@@ -3,6 +3,8 @@ import Axios from 'axios';
 import { Col, Card, Row, Button } from 'antd'
 import { RocketOutlined } from '@ant-design/icons';
 import ImageSlider from '../../utils/ImageSlider';
+import CheckBox from './Sections/CheckBox';
+import { continents } from './Sections/Datas';
 
 const { Meta } = Card;
 
@@ -12,6 +14,10 @@ function LandingPage() {
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(4)
     const [PostSize, setPostSize] = useState(0)
+    const [Filters, setFilters] = useState({
+        continents: [],
+        price: []
+    })
 
     useEffect(() => {
 
@@ -68,11 +74,30 @@ function LandingPage() {
             </Col>
         );
     })
+
+    const showFilterResults = (filters) => {
+
+        let body = {
+            skip: 0,
+            limit: 4,
+            filters: filters
+        }
+
+        getProduct(body)
+        setSkip(0)
+    }
     
+    const handleFilters = (filters, category) => {
+        const newFilters = { ...Filters }
+
+        newFilters[category] = filters
+
+        showFilterResults()
+    }
     
     return (
-        <div style={{ width: '75%', margin: '3rem auto' }}>
-            <div style={{ textAlign: 'center' }}>
+        <div style={{ width: "75%", margin: "3rem auto" }}>
+            <div style={{ textAlign: "center" }}>
                 <h2>
                     Let'x Travel AnyWhere
                     <RocketOutlined />
@@ -81,18 +106,23 @@ function LandingPage() {
 
             {/* Filter */}
 
+            {/* CheckBox */}
+            <CheckBox
+                list={continents}
+                handleFilters={filter => handleFilters(filters, "continents")} />
+
+            {/* RadioBox */}
+
             {/* Search */}
 
             {/* Cards */}
-            <Row gutter={[16,16]}>
-                {renderCards}
-            </Row>
+            <Row gutter={[16, 16]}>{renderCards}</Row>
 
-            {PostSize >= Limit &&
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {PostSize >= Limit && (
+                <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button onClick={loadMoreHandler}>더보기</Button>
                 </div>
-            }
+            )}
         </div>
     );
 }
