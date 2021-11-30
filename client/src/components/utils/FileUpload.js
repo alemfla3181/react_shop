@@ -1,6 +1,6 @@
-import React,{useState, useEffect} from "react";
+import React,{useState} from "react";
 import Dropzone from "react-dropzone";
-import axios from "axios";
+import Axios from "axios";
 import { CloudUploadOutlined } from "@ant-design/icons";
 
 function FileUpload(props) {
@@ -12,21 +12,22 @@ function FileUpload(props) {
 
         let formData = new FormData();
         const config = {
-            header: { "content-type": "multipart/form-data" },
+            header: { 'content-type': 'multipart/form-data' },
         };
         formData.append("file", files[0]);
 
-        axios.post("/api/product/image", formData, config).then((response) => {
-            if (response.data.success) {
-                console.log(response.data)
-                setImages([...Images, response.data.filePath])
-                props.refreshFunction(...Images, response.data.filePath)
-
-            } else {
-                alert("파일을 저장하는데 실패했습니다.");
-            }
-        });
+        Axios.post('/api/product/image', formData, config)
+            .then((response) => {
+                if (response.data.success) {
+                    console.log(response.data)
+                    setImages([...Images, response.data.filePath])
+                    props.refreshFunction([...Images, response.data.filePath])
+                } else {
+                    alert("파일을 저장하는데 실패했습니다.");
+                }
+            });    
     };
+
 
     const deleteHandler = (image) => {
         const currentIndex = Images.indexOf(image)
@@ -41,7 +42,6 @@ function FileUpload(props) {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Dropzone onDrop={dropHandler}>
                 {({ getRootProps, getInputProps }) => (
-                    <section>
                         <div
                             style={{
                                 width: 300,
@@ -54,15 +54,14 @@ function FileUpload(props) {
                             {...getRootProps()}
                         >
                             <input {...getInputProps()} />
-                            <CloudUploadOutlined style={{ fontSize: "10rem" }} />
+                            <CloudUploadOutlined style={{ fontSize: "3rem" }} />
                         </div>
-                    </section>
                 )}
             </Dropzone>
 
             <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll' }}>
                 {Images.map((image, index) => (
-                    <div onClick={()=> deleteHandler(image)} key={index}>
+                    <div onClick={() => deleteHandler(image)} key={index}>
                         <img style={{ minWidth: '300px', width: '300px', height: '240px' }}
                             src={`http://localhost:5000/${image}`}
                         />
