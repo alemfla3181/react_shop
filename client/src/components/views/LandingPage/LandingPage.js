@@ -92,7 +92,7 @@ function LandingPage() {
 
         newFilters[category] = filters
 
-        showFilterResults()
+        showFilterResults(newFilters)
     }
     
     return (
@@ -109,7 +109,7 @@ function LandingPage() {
             {/* CheckBox */}
             <CheckBox
                 list={continents}
-                handleFilters={filter => handleFilters(filters, "continents")} />
+                handleFilters={filters => handleFilters(filters, "continents")} />
 
             {/* RadioBox */}
 
