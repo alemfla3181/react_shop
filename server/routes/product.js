@@ -54,8 +54,6 @@ router.post('/products', (req, res) => {
         }
     }
 
-    console.log('findArgs', findArgs)
-
     Product.find(findArgs)
         .populate("writer")
         .skip(skip)

@@ -8,22 +8,22 @@ function RadioBox(props) {
     const [Value, setValue] = useState(0)
 
 
-    const renderRadioBox = () => {
+    const renderRadioBox = () => (
         props.list && props.list.map((value =>
             <Radio key={value._id} value={value._id}>{value.name}</Radio>
         ))
-    }
+    )
 
-    const hanldeChange = (e) => {
+    const handleChange = (e) => {
         setValue(e.target.value)
     }
 
     return (
         <div>
-            <Collapse defaultActiveKey={["1"]}>
-                <Panel header="This is panel header 1" key="1">
+            <Collapse >
+                <Panel header="Price" key="1">
 
-                    <Radio.Group onChange={hanldeChange} value={Value}>
+                    <Radio.Group onChange={handleChange} value={Value}>
                         {renderRadioBox()}
                     </Radio.Group>
 
