@@ -112,6 +112,7 @@ function LandingPage() {
         }
 
         showFilterResults(newFilters)
+        setFilters(newFilters)
     }
     
     return (
