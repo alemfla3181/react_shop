@@ -50,6 +50,7 @@ router.post('/products', (req, res) => {
 
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {
+            console.log('key', key)
             findArgs[key] = req.body.filters[key];
         }
     }

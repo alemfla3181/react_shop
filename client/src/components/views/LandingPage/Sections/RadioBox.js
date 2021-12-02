@@ -10,12 +10,13 @@ function RadioBox(props) {
 
     const renderRadioBox = () => (
         props.list && props.list.map((value =>
-            <Radio key={value._id} value={value._id}>{value.name}</Radio>
+            <Radio key={value._id} value={value._id}> {value.name} </Radio>
         ))
     )
 
     const handleChange = (e) => {
         setValue(e.target.value)
+        props.handleFilters(e.target.value)
     }
 
     return (
