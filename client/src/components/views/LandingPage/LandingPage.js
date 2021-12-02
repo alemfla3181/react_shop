@@ -41,10 +41,9 @@ function LandingPage() {
                 if (body.loadMore) {
                     setProducts([...Products, ...response.data.productInfo]);
                 } else {
-                    setProducts(response.data.productInfo);   
+                    setProducts(response.data.productInfo);
                 }
                 setPostSize(response.data.postSize)
-                console.log('PostSize:', PostSize)
             } else {
                 alert("상품들을 가져오는데 실패했습니다.");
             }
@@ -80,7 +79,7 @@ function LandingPage() {
         return (
             <Col lg={12} md={10} xs={24} key={index}>
                 <Card
-                    cover={<ImageSlider images={product.images} /> }
+                    cover={<ImageSlider images={product.images} />}
                 >
                     <Meta title={product.title} description={`$${product.price}`} />
                 </Card>
@@ -147,7 +146,7 @@ function LandingPage() {
         <div style={{ width: "75%", margin: "3rem auto" }}>
             <div style={{ textAlign: "center" }}>
                 <h2>
-                    Let'x Travel AnyWhere
+                    Let's Travel AnyWhere
                     <RocketOutlined />
                 </h2>
             </div>
@@ -164,14 +163,21 @@ function LandingPage() {
                 </Col>
             </Row>
             {/* Search */}
-            <div style={{display:'flex', justifyContent: 'flex-end', margin: '1rem auto'}}>
-                <SearchFeature
-                    refreshFunction={updateSearchTerm}
-                />
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    margin: "1rem auto",
+                }}
+            >
+                <SearchFeature refreshFunction={updateSearchTerm} />
             </div>
             {/* Cards */}
-            <Row gutter={[16, 16]}>{renderCards}</Row>
+            <Row gutter={[16, 16]}>
+                {renderCards}
+            </Row>
 
+            <br />
             {PostSize >= Limit && (
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button onClick={loadMoreHandler}>더보기</Button>
