@@ -70,7 +70,7 @@ router.post('/products', (req, res) => {
     if (term) {
         // search
         Product.find(findArgs)
-            .find({$text: {$search: term}})
+            .find({"title": {$regex: term, '$options':'i'}})
             .populate("writer")
             .skip(skip)
             .limit(limit)

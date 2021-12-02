@@ -44,6 +44,7 @@ function LandingPage() {
                     setProducts(response.data.productInfo);   
                 }
                 setPostSize(response.data.postSize)
+                console.log('PostSize:', PostSize)
             } else {
                 alert("상품들을 가져오는데 실패했습니다.");
             }
@@ -51,17 +52,27 @@ function LandingPage() {
     }
 
     const loadMoreHandler = () => {
+        let skip = Skip + Limit;
 
-        let skip = Skip + Limit
-
-        let body = {
-            skip: skip,
-            limit: Limit,
-            loadMore: true
+        if (SearchTerm) {
+            let body = {
+                skip: skip,
+                limit: Limit,
+                filters: Filters,
+                loadMore: true,
+                searchTerm: SearchTerm,
+            };
+            getProduct(body);
+        } else {
+            let body = {
+                skip: skip,
+                limit: Limit,
+                loadMore: true,
+            };
+            getProduct(body);
         }
 
-        getProduct(body)
-        setSkip(skip)
+        setSkip(skip);
     }
 
     const renderCards = Products.map((product, index) => {
@@ -118,7 +129,6 @@ function LandingPage() {
     }
 
     const updateSearchTerm = (newSearchTerm) => {
-        setSearchTerm(newSearchTerm)
 
         let body = {
             skip: 0,
@@ -127,9 +137,10 @@ function LandingPage() {
             searchTerm: newSearchTerm,
         }
 
+        setSearchTerm(newSearchTerm);
         getProduct(body)
-        setSearchTerm(newSearchTerm)
-        setSkip(0)
+        setSkip(0);
+    
     }
     
     return (
