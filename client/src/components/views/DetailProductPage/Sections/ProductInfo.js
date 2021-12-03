@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ProductInfo() {
+function ProductInfo(props) {
     return (
         <div>
             ProductInfo
