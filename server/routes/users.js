@@ -146,9 +146,29 @@ router.get('/removeFromCart', auth, (req, res) => {
         }
     )
 
-
-
     // product collection에서 현재 남아있는 상품들의 정보를 가져오기
+})
+
+router.post('/successBuy', auth, (req, res) => {
+    
+    // User collection history 필드에 간단한 정보 넣어주기
+    let history = [];
+    let transactionData = {};
+
+    req.body.cartDetail.forEach((item) => {
+        history.push({
+            dataOfPurchase: Date.now(),
+            name: item.title,
+            id: item._id,
+            price: item.price,
+            quantity: item.quantity,
+            paymentId: req.body.paymentData.paymentId
+        })
+    })
+    // Payment collection 안에 자세한 결제 정보들 넣어주기
+
+
+    // Product collection sold 필드 정보 업데이트 (상품이 팔린 수 업데이트)
 })
 
 module.exports = router;
