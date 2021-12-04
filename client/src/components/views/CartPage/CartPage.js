@@ -63,7 +63,7 @@ function CartPage(props) {
 
                 <div style={{ marginTop: '3rem' }}>
                     <h2>Total Amount: ${Total}</h2>
-                    <Paypal />
+                    <Paypal total={Total}/>
                 </div>
                 
                 :
