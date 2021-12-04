@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { getCartItems, removeCartItem } from '../../../_actions/user_actions'
 import UserCardBlock from './Sections/UserCardBlock'
 import { Empty } from 'antd'
+import Paypal from '../../utils/Paypal'
 
 
 function CartPage(props) {
@@ -22,8 +23,8 @@ function CartPage(props) {
                 })
                 dispatch(getCartItems(cartItems, props.user.userData.cart))
                     .then(response => {
-                    calculateTotal(response.payload)
-                })
+                        calculateTotal(response.payload)
+                    })
             }
         }
     }, [props.user.userData])
@@ -40,7 +41,7 @@ function CartPage(props) {
     }
 
     let removeFromCart = (productId) => {
-        if(window.confirm('삭제하시겠습니까?')){
+        if (window.confirm('삭제하시겠습니까?')) {
             dispatch(removeCartItem(productId))
                 .then(response => {
                     if (response.payload.productInfo.length <= 0) {
@@ -54,14 +55,16 @@ function CartPage(props) {
         <div style={{ width: '85%', margin: '3rem auto' }}>
             <h1>My Cart</h1>
             <div>
-                <UserCardBlock products={props.user.cartDetail} removeItem={removeFromCart}/>
+                <UserCardBlock products={props.user.cartDetail} removeItem={removeFromCart} />
             </div>
 
             {ShowTotal ?
 
                 <div style={{ marginTop: '3rem' }}>
                     <h2>Total Amount: ${Total}</h2>
+                    <Paypal />
                 </div>
+                
                 :
                 <div>
                     <br />
@@ -69,6 +72,7 @@ function CartPage(props) {
                     <Empty description={false} />
                 </div>
             }
+            
         </div>
     )
 }
