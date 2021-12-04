@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getCartItems, removeCartItem, onSuccessBuy } from '../../../_actions/user_actions'
 import UserCardBlock from './Sections/UserCardBlock'
-import { Empty } from 'antd'
+import { Empty, Result } from 'antd'
 import Paypal from '../../utils/Paypal'
 
 
@@ -12,6 +12,7 @@ function CartPage(props) {
     const dispatch = useDispatch()
     const [Total, setTotal] = useState(0)
     const [ShowTotal, setShowTotal] = useState(false)
+    const [ShowSuccess, setShowSuccess] = useState(false)
 
     useEffect(() => {
 
@@ -61,9 +62,9 @@ function CartPage(props) {
             .then(response => {
                 if (response.payload.success) {
                     setShowTotal(false)
-
-            }
-        })
+                    setShowSuccess(true)
+                }
+            })
     }
 
     return (
@@ -72,22 +73,25 @@ function CartPage(props) {
             <div>
                 <UserCardBlock products={props.user.cartDetail} removeItem={removeFromCart} />
             </div>
-
+            
             {/* 카트에 상품이 있을떄 */}
             {ShowTotal ?
-
                 <div style={{ marginTop: '3rem' }}>
                     <h2>Total Amount: ${Total}</h2>
-                    <Paypal total={Total} onSuccess={transactionSuccess}/>
+                    <Paypal total={Total} onSuccess={transactionSuccess} />
                 </div>
-                :
-                <div>
-                    <br />
-                    <br />
-                    <Empty description={false} />
-                </div>
+                : ShowSuccess ?
+                    <Result
+                        status="success"
+                        title="Successfully Purchased Items!"
+                    />
+                    :
+                    <div>
+                        <br />
+                        <br />
+                        <Empty description={false} />
+                    </div>
             }
-            
         </div>
     )
 }
