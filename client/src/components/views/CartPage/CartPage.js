@@ -58,6 +58,7 @@ function CartPage(props) {
                 <UserCardBlock products={props.user.cartDetail} removeItem={removeFromCart} />
             </div>
 
+            {/* 카트에 상품이 있을떄 */}
             {ShowTotal ?
 
                 <div style={{ marginTop: '3rem' }}>
