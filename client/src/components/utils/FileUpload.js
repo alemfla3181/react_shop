@@ -19,7 +19,7 @@ function FileUpload(props) {
         Axios.post('/api/product/image', formData, config)
             .then((response) => {
                 if (response.data.success) {
-                    console.log(response.data)
+                    //console.log(response.data)
                     setImages([...Images, response.data.filePath])
                     props.refreshFunction([...Images, response.data.filePath])
                 } else {
@@ -63,7 +63,7 @@ function FileUpload(props) {
                 {Images.map((image, index) => (
                     <div onClick={() => deleteHandler(image)} key={index}>
                         <img style={{ minWidth: '300px', width: '300px', height: '240px' }}
-                            src={`http://localhost:5000/${image}`}
+                            src={`https://afternoon-thicket-94256.herokuapp.com/${image}`}
                         />
                     </div>    
                 ))}
