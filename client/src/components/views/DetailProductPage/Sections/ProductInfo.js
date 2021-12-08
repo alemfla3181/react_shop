@@ -1,13 +1,18 @@
 import React from 'react'
 import { Button, Descriptions } from 'antd'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import {addToCart} from '../../../../_actions/user_actions'
 
 function ProductInfo(props) {
-    
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     const clickHandler = () => {
+        if (user.userData && !user.userData.isAuth) {
+            return alert("먼저 로그인하세요")
+        } else {
+            
+        }
         // 필요한 정보를 장바구니에 넣어준다
         dispatch(addToCart(props.detail._id))
     }
