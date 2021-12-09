@@ -11,7 +11,7 @@ import { continents, price } from './Sections/Datas';
 
 const { Meta } = Card;
 
-function LandingPage() {
+function LandingPage(props) {
 
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
@@ -24,14 +24,29 @@ function LandingPage() {
     const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-
-        let body = {
-            skip: Skip,
-            limit: Limit
+        if (props.match.params.key1 === "sort1") {
+            let body = {
+                skip: Skip,
+                limit: Limit,
+                sort: "1",
+            }
+            getProduct(body)
+        } else if(props.match.params.key1 === "sort2"){
+            let body = {
+                skip: Skip,
+                limit: Limit,
+                sort: "2",
+            }
+            getProduct(body)
         }
-
-        getProduct(body)
-        
+        else {
+            let body = {
+                skip: Skip,
+                limit: Limit
+            }
+            
+            getProduct(body)
+        }  
     }, [])
 
     const getProduct = (body) => {
@@ -63,19 +78,29 @@ function LandingPage() {
             };
             getProduct(body);
         } else {
-            let body = {
-                skip: skip,
-                limit: Limit,
-                loadMore: true,
-            };
-            getProduct(body);
+            if (props.match.params.key1 === "sort1") {
+                let body = {
+                    skip: skip,
+                    limit: Limit,
+                    loadMore: true,
+                    sort: "1",
+                }
+                console.log("1")
+                getProduct(body);
+            }
+            else {
+                let body = {
+                    skip: skip,
+                    limit: Limit,
+                    loadMore: true,
+                }
+                getProduct(body);
+            }
         }
-
         setSkip(skip);
     }
 
     const renderCards = Products.map((product, index) => {
-
         return (
             <Col lg={12} md={10} xs={24} key={index}>
                 <Card

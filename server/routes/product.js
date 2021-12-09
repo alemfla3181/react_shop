@@ -46,7 +46,8 @@ router.post('/products', (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let term = req.body.searchTerm
-
+    let sort = req.body.sort
+    console.log(sort)
     let findArgs = {};
 
     for (let key in req.body.filters) {
@@ -72,7 +73,8 @@ router.post('/products', (req, res) => {
         Product.find(findArgs)
             .find({
                 '$or': [{ "title": { $regex: term, '$options': 'i' } },
-                    { "description": { $regex: term, '$options': 'i' } }]})
+                { "description": { $regex: term, '$options': 'i' } }]
+            })
             .populate("writer")
             .skip(skip)
             .limit(limit)
@@ -84,18 +86,49 @@ router.post('/products', (req, res) => {
                 })
             })
     } else {
-        Product.find(findArgs)
-            .populate("writer")
-            .skip(skip)
-            .limit(limit)
-            .exec((err, productInfo) => {
-                if (err) return res.status(400).json({ success: false, err });
-                return res.status(200).json({
-                    success: true, productInfo,
-                    postSize: productInfo.length
+        if (sort === "1") {
+            console.log("정렬1")
+            Product.find(findArgs)
+                .populate("writer")
+                .sort({ "sold": -1})
+                .skip(skip)
+                .limit(limit)
+                .exec((err, productInfo) => {
+                    if (err) return res.status(400).json({ success: false, err });
+                    return res.status(200).json({
+                        success: true, productInfo,
+                        postSize: productInfo.length
+                    })
                 })
-            })
+        } else if (sort === "2") {
+            console.log("정렬2")
+            Product.find(findArgs)
+                .populate("writer")
+                .sort({ "price": 1})
+                .skip(skip)
+                .limit(limit)
+                .exec((err, productInfo) => {
+                    if (err) return res.status(400).json({ success: false, err });
+                    return res.status(200).json({
+                        success: true, productInfo,
+                        postSize: productInfo.length
+                    })
+                })
+        }else {
+            Product.find(findArgs)
+                .populate("writer")
+                .skip(skip)
+                .limit(limit)
+                .exec((err, productInfo) => {
+                    if (err) return res.status(400).json({ success: false, err });
+                    return res.status(200).json({
+                        success: true, productInfo,
+                        postSize: productInfo.length
+                    })
+                })
+        }
     }
+        
 })
 
 router.get('/products_by_id', (req, res) => {
