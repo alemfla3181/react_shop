@@ -1,3 +1,6 @@
+const moment = require('moment');
+const nowTime = moment().format("YYYY년MM월DD일 HH:mm:ss")
+
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
@@ -6,6 +9,7 @@ const { auth } = require("../middleware/auth");
 const { Product } = require('../models/Product');
 const { Payment } = require("../models/Payment");
 const async = require('async')
+
 
 //=================================
 //             User
@@ -107,7 +111,7 @@ router.post("/addToCart", auth, (req, res) => {
                             cart: {
                                 id: req.body.productId,
                                 quantity: 1,
-                                date: Date.now()
+                                date: nowTime
                             }
                         }
                     },
@@ -159,7 +163,7 @@ router.post('/successBuy', auth, (req, res) => {
 
     req.body.cartDetail.forEach((item) => {
         history.push({
-            dateOfPurchase: Date.now(),
+            dateOfPurchase: nowTime,
             name: item.title,
             id: item._id,
             price: item.price,

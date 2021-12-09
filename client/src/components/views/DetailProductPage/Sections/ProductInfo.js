@@ -1,20 +1,28 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Button, Descriptions } from 'antd'
 import { useDispatch,useSelector } from 'react-redux'
-import {addToCart} from '../../../../_actions/user_actions'
+import { addToCart } from '../../../../_actions/user_actions'
+import moment from 'moment'
 
 function ProductInfo(props) {
+    const nowTime = moment().format("YYYYMMDD HH:mm:ss")
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const [Waiting, setWaiting] = useState(true)
 
     const clickHandler = () => {
         if (user.userData && !user.userData.isAuth) {
             return alert("먼저 로그인하세요")
-        } else {
-            
+        } else {  // 필요한 정보를 장바구니에 넣어준다
+            if (Waiting) {
+                console.log(nowTime)
+                dispatch(addToCart(props.detail._id))
+                setWaiting(false)
+                setTimeout(() =>  {setWaiting(true)}, 300)
+            } else {
+                return alert("loading...")
+            }
         }
-        // 필요한 정보를 장바구니에 넣어준다
-        dispatch(addToCart(props.detail._id))
     }
 
     return (
