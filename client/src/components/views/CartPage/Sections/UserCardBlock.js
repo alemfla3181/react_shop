@@ -14,8 +14,11 @@ function UserCardBlock(props) {
         props.products && props.products.map((product, index) => (
             <tr key={index}>
                 <td>
-                    <img style={{ width: '70px' }} alt='product'
-                        src={renderCartImage(product.images)} />
+                <a href={`/product/${product._id}`}><img style={{ width: '70px' }} alt='product'
+                        src={renderCartImage(product.images)} /></a>
+                </td>
+                <td>
+                    {product.title} 
                 </td>
                 <td>
                     {product.quantity} EA
@@ -39,6 +42,7 @@ function UserCardBlock(props) {
                 <thead>
                     <tr>
                         <th>Product Image</th>
+                        <th>Product Title</th>
                         <th>Product Quantity</th>
                         <th>Product Price</th>
                         <th>Remove from Cart</th>
