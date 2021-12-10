@@ -101,7 +101,7 @@ router.post('/products', (req, res) => {
                     })
                 })
         } else if (sort === "2") {
-            console.log("정렬2")
+            //console.log("정렬2")
             Product.find(findArgs)
                 .populate("writer")
                 .sort({ "price": 1})
