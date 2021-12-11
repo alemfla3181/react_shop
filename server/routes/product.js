@@ -103,7 +103,7 @@ router.post('/products', (req, res) => {
             //console.log("정렬2")
             Product.find(findArgs)
                 .populate("writer")
-                .sort({ "price": 1})
+                .sort({ "view": -1})
                 .skip(skip)
                 .limit(limit)
                 .exec((err, productInfo) => {
@@ -144,12 +144,18 @@ router.get('/products_by_id', (req, res) => {
 
     //productId를 이용해서 DB에서 상품 정보를 가져온다.
 
-    Product.find({ _id: { $in: productIds } })
-        .populate('writer')
-        .exec((err, product) => {
-            if (err) return res.status(400).send(err)
-            return res.status(200).send(product)
-        })    
+    Product.findOneAndUpdate(
+        { _id: { $in: productIds } },
+        { $inc: { "view": 1 } },
+        { new: true }, (err, product) => {
+            Product.find({ _id: { $in: productIds } })
+                .populate('writer')
+                .exec((err, product) => {
+                    if (err) return res.status(400).send(err)
+                    return res.status(200).send(product)
+                })
+        }
+    )
 })
 
 module.exports = router;

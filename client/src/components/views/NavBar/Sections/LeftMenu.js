@@ -15,6 +15,9 @@ function LeftMenu(props) {
             <Menu.Item key="popular">
                 <a href="/popular">Popular</a>
             </Menu.Item>
+            <Menu.Item key="view">
+                <a href="/view">Views</a>
+            </Menu.Item>
         </Menu>
     )
 }

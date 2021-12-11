@@ -31,6 +31,13 @@ function LandingPage(props) {
                 sort: "1",
             }
             getProduct(body)
+        } else if(props.match.path === '/view') {
+            let body = {
+                skip: Skip,
+                limit: Limit,
+                sort: "2",
+            }
+            getProduct(body)
         }
         else {
             let body = {
