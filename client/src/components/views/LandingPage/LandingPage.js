@@ -24,14 +24,12 @@ function LandingPage(props) {
     const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        console.log(props)
         if (props.match.path === '/popular') {
             let body = {
                 skip: Skip,
                 limit: Limit,
                 sort: "1",
             }
-            console.log(body.sort)
             getProduct(body)
         }
         else {
@@ -92,7 +90,7 @@ function LandingPage(props) {
                         </a>
                     }
                 >
-                    <Meta title={product.title} description={`$${product.price}`} />
+                    <Meta title={product.title} description={`$${product.price}`}/>
                 </Card>
             </Col>
         );
