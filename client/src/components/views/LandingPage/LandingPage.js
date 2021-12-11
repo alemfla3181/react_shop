@@ -30,6 +30,7 @@ function LandingPage(props) {
                 limit: Limit,
                 sort: "1",
             }
+            console.log(body.sort)
             getProduct(body)
         } else if(props.match.params.key1 === "sort2"){
             let body = {
@@ -78,24 +79,12 @@ function LandingPage(props) {
             };
             getProduct(body);
         } else {
-            if (props.match.params.key1 === "sort1") {
-                let body = {
-                    skip: skip,
-                    limit: Limit,
-                    loadMore: true,
-                    sort: "1",
-                }
-                console.log("1")
-                getProduct(body);
+            let body = {
+                skip: skip,
+                limit: Limit,
+                loadMore: true,
             }
-            else {
-                let body = {
-                    skip: skip,
-                    limit: Limit,
-                    loadMore: true,
-                }
-                getProduct(body);
-            }
+            getProduct(body);
         }
         setSkip(skip);
     }
