@@ -24,7 +24,8 @@ function LandingPage(props) {
     const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        if (props.match.params.key1 === "sort1") {
+        console.log(props)
+        if (props.match.path === '/popular') {
             let body = {
                 skip: Skip,
                 limit: Limit,
@@ -32,20 +33,12 @@ function LandingPage(props) {
             }
             console.log(body.sort)
             getProduct(body)
-        } else if(props.match.params.key1 === "sort2"){
-            let body = {
-                skip: Skip,
-                limit: Limit,
-                sort: "2",
-            }
-            getProduct(body)
         }
         else {
             let body = {
                 skip: Skip,
                 limit: Limit
             }
-            
             getProduct(body)
         }  
     }, [])

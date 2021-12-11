@@ -1,5 +1,8 @@
 import React from 'react';
+import LandingPage from '../../LandingPage/LandingPage';
+
 import { Menu } from 'antd';
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -10,7 +13,7 @@ function LeftMenu(props) {
                 <a href="/">Home</a>
             </Menu.Item>
             <Menu.Item key="popular">
-                <a href="/sort1">Popular</a>
+                <a href="/popular">Popular</a>
             </Menu.Item>
         </Menu>
     )
