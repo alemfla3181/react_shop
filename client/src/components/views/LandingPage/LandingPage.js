@@ -48,6 +48,7 @@ function LandingPage(props) {
         }  
     }, [])
 
+    // 상품 가져오기
     const getProduct = (body) => {
         Axios.post("/api/product/products", body).then((response) => {
             if (response.data.success) {
@@ -64,6 +65,7 @@ function LandingPage(props) {
         });
     }
 
+    // 더보기
     const loadMoreHandler = () => {
         let skip = Skip + Limit;
 
@@ -87,6 +89,7 @@ function LandingPage(props) {
         setSkip(skip);
     }
 
+    // 상품 목록  
     const renderCards = Products.map((product, index) => {
         return (
             <Col lg={12} md={10} xs={24} key={index}>
@@ -103,6 +106,7 @@ function LandingPage(props) {
         );
     })
 
+    // 
     const showFilterResults = (filters) => {
 
         let body = {
