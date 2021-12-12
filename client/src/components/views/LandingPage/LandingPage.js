@@ -106,7 +106,7 @@ function LandingPage(props) {
         );
     })
 
-    // 
+    // 필터 결과
     const showFilterResults = (filters) => {
 
         let body = {
@@ -119,6 +119,7 @@ function LandingPage(props) {
         setSkip(0)
     }
 
+    // 금액
     const handlePrice = (value) => {
         const data = price;
         let array = [];
@@ -131,6 +132,7 @@ function LandingPage(props) {
         return array;
     }
     
+    // 필터
     const handleFilters = (filters, category) => {
         const newFilters = { ...Filters }
 
@@ -147,6 +149,7 @@ function LandingPage(props) {
         setFilters(newFilters)
     }
 
+    // 검색
     const updateSearchTerm = (newSearchTerm) => {
 
         let body = {
