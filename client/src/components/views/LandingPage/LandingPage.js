@@ -70,6 +70,7 @@ function LandingPage(props) {
         let skip = Skip + Limit;
 
         if (SearchTerm) {
+            
             let body = {
                 skip: skip,
                 limit: Limit,
