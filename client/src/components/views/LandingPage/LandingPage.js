@@ -70,66 +70,23 @@ function LandingPage(props) {
         let skip = Skip + Limit;
 
         if (SearchTerm) {
-            if (props.match.path === '/popular') {
-                let body = {
-                    skip: skip,
-                    limit: Limit,
-                    filters: Filters,
-                    loadMore: true,
-                    searchTerm: SearchTerm,
-                    sort: "1",
-                }
-                getProduct(body)
-            } else if (props.match.path === '/view') {
-                let body = {
-                    skip: skip,
-                    limit: Limit,
-                    filters: Filters,
-                    loadMore: true,
-                    searchTerm: SearchTerm,
-                    sort: "2",
-                }
-                getProduct(body)
+            let body = {
+                skip: skip,
+                limit: Limit,
+                filters: Filters,
+                loadMore: true,
+                searchTerm: SearchTerm,
+            };
+            getProduct(body);
+        } else {
+            let body = {
+                skip: skip,
+                limit: Limit,
+                loadMore: true,
             }
-            else {
-                let body = {
-                    skip: skip,
-                    limit: Limit,
-                    filters: Filters,
-                    loadMore: true,
-                    searchTerm: SearchTerm,
-                }
-                getProduct(body)
-            }
+            getProduct(body);
         }
-        else{
-            if (props.match.path === '/popular') {
-                let body = {
-                    skip: Skip,
-                    limit: Limit,
-                    loadMore: true,
-                    sort: "1",
-                }
-                getProduct(body)
-            } else if (props.match.path === '/view') {
-                let body = {
-                    skip: Skip,
-                    limit: Limit,
-                    loadMore: true,
-                    sort: "2",
-                }
-                getProduct(body)
-            }
-            else {
-                let body = {
-                    skip: Skip,
-                    limit: Limit,
-                    loadMore: true,
-                }
-                getProduct(body)
-            }
-            setSkip(skip);
-        }
+        setSkip(skip);
     }
 
     // 상품 목록  
