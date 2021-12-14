@@ -50,8 +50,6 @@ router.post('/products', (req, res) => {
     let sort = req.body.sort
     let findArgs = {};
 
-    console.log(req.body.sort)
-
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {
             // console.log('key', key)
@@ -89,7 +87,7 @@ router.post('/products', (req, res) => {
             })
     } else {
         if (sort === 1) {
-            console.log("정렬1")
+            //console.log("정렬1")
             Product.find(findArgs)
                 .populate("writer")
                 .sort({ "sold": -1})
@@ -103,7 +101,7 @@ router.post('/products', (req, res) => {
                     })
                 })
         } else if (sort === 2) {
-            console.log("정렬2")
+            //console.log("정렬2")
             Product.find(findArgs)
                 .populate("writer")
                 .sort({ "view": -1})
