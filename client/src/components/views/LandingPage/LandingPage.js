@@ -24,32 +24,21 @@ function LandingPage(props) {
     const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        if (props.match.path === '/popular') {
-            let body = {
-                skip: Skip,
-                limit: Limit,
-                sort: "1",
-            }
-            getProduct(body)
-        } else if(props.match.path === '/view') {
-            let body = {
-                skip: Skip,
-                limit: Limit,
-                sort: "2",
-            }
-            getProduct(body)
+        let body = {
+            skip: Skip,
+            limit: Limit
         }
-        else {
-            let body = {
-                skip: Skip,
-                limit: Limit
-            }
-            getProduct(body)
-        }  
+        getProduct(body)
     }, [])
 
     // 상품 가져오기
     const getProduct = (body) => {
+        body.sort = 0;
+        if (props.match.path === '/popular') {
+            body.sort = 1;
+        } else if(props.match.path === '/view') {
+            body.sort = 2;
+        }
         Axios.post("/api/product/products", body).then((response) => {
             if (response.data.success) {
                 //console.log(response.data)
