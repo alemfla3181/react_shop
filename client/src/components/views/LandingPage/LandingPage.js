@@ -7,6 +7,7 @@ import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
 import SearchFeature from './Sections/SearchFeature';
 import { continents, price } from './Sections/Datas';
+import { Link } from 'react-router-dom';
 
 
 const { Meta } = Card;
@@ -84,9 +85,9 @@ function LandingPage(props) {
             <Col lg={12} md={10} xs={24} key={index}>
                 <Card
                     cover={
-                        <a href={`/product/${product._id}`}>
+                        <Link to={`/product/${product._id}`}>
                             <ImageSlider images={product.images} />
-                        </a>
+                        </Link>
                     }
                 >
                     <Meta title={product.title} description={`$${product.price}`}/>
