@@ -17,7 +17,7 @@ function NavBar() {
     };
 
     return (
-        <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
+        <nav className="menu">
             <div className="menu__logo">
                 <Link to="/">ANYWHERE</Link>
             </div>
@@ -25,7 +25,7 @@ function NavBar() {
                 <div className="menu_left">
                     <LeftMenu mode="horizontal" />
                 </div>
-                <div className="menu_rigth">
+                <div className="menu_right">
                     <RightMenu mode="horizontal" />
                 </div>
                 <Button
