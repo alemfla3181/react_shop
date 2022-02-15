@@ -22,11 +22,11 @@ function NavBar() {
                 <Link to="/">ANYWHERE</Link>
             </div>
             <div className="menu__container">
-                <div className="menu_left">
-                    <LeftMenu mode="horizontal" />
+                <div className="leftMenu">
+                    <LeftMenu />
                 </div>
-                <div className="menu_right">
-                    <RightMenu mode="horizontal" />
+                <div className="rightMenu">
+                    <RightMenu />
                 </div>
                 <Button
                     className="menu__mobile-button"
@@ -36,15 +36,15 @@ function NavBar() {
                     <Icon type="align-right" />
                 </Button>
                 <Drawer
-                    title="Basic Drawer"
+                    title="Menu"
                     placement="right"
                     className="menu_drawer"
                     closable={false}
                     onClose={onClose}
                     visible={visible}
                 >
-                    <LeftMenu mode="inline" />
-                    <RightMenu mode="inline" />
+                    <LeftMenu />
+                    <RightMenu />
                 </Drawer>
             </div>
         </nav>

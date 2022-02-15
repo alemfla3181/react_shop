@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Menu, Badge } from 'antd';
+import { Badge } from 'antd';
 import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
 import { Link, withRouter } from 'react-router-dom';
@@ -22,25 +22,25 @@ function RightMenu(props) {
 
     if (user.userData && !user.userData.isAuth) {
         return (
-            <Menu mode={props.mode}>
-                <Menu.Item key="mail">
+            <div mode={props.mode}>
+                <li>
                     <Link to="/login">Signin</Link>
-                </Menu.Item>
-                <Menu.Item key="app">
+                </li>
+                <li>
                     <Link to="/register">Signup</Link>
-                </Menu.Item>
-            </Menu>
+                </li>
+            </div>
         )
     } else {
         return (
-            <Menu mode={props.mode}>
-                <Menu.Item key="upload">
+            <div mode={props.mode}>
+                <li>
                     <Link to="/product/upload">Upload</Link>
-                </Menu.Item>
-                <Menu.Item key="history">
+                </li>
+                <li>
                     <Link to="/history">History</Link>
-                </Menu.Item>
-                <Menu.Item key="cart" >
+                </li>
+                <li>
                     <Badge count={user.userData && user.userData.cart.length}
                         style={{ paddingBottom: 1, marginRight: 10 }}>
                         <Link to="/user/cart">
@@ -52,11 +52,11 @@ function RightMenu(props) {
                                 }} />
                         </Link>
                     </Badge>
-                </Menu.Item>
-                <Menu.Item key="logout">
+                </li>
+                <li>
                     <a onClick={logoutHandler}>Logout</a>
-                </Menu.Item>
-            </Menu>
+                </li>
+            </div>
         )
     }
 }
