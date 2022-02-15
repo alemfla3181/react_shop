@@ -123,7 +123,7 @@ li:hover::after{
     transform: translateY(-20%) scaleX(0);
     transition: transform 0.2s ease-in-out;
     z-index: -1;
-    background-color: #f3d28c;
+    background-color: #ffefcc;
   }
 
   li:hover::after{
