@@ -40,16 +40,11 @@ function RightMenu(props) {
                 <li>
                     <Link to="/history">History</Link>
                 </li>
-                <li>
+                <li className="badge">
                     <Badge count={user.userData && user.userData.cart.length}
-                        style={{ paddingBottom: 1, marginRight: 10 }}>
+                        className="badge_size">
                         <Link to="/user/cart">
-                            <ShoppingCartOutlined
-                                style={{
-                                    fontSize: 35,
-                                    marginRight: 0,
-                                    color: 'GreenYellow'
-                                }} />
+                            <ShoppingCartOutlined className='icon'/>
                         </Link>
                     </Badge>
                 </li>

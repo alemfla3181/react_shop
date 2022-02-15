@@ -40,7 +40,7 @@ li::after{
   height: 4px;
   transform: translateY(20px) scaleX(0);
   transition: transform 0.2s ease-in-out;
-  background-color: orange;
+  background-color: rgb(169, 219, 252);
 }
 
 li:hover::after{
@@ -57,6 +57,20 @@ li:hover::after{
 
 .menu_drawer{
   display: none;
+}
+
+.badge{
+  padding-top: 0px;
+  transform: translateY(30%);
+}
+
+.badge_size{
+  margin-right: 10px;
+  font-size: 36px;
+}
+
+.icon{
+  color: greenyellow;
 }
 
 .menu__mobile-button {
@@ -105,7 +119,7 @@ li:hover::after{
     transform: translateY(-20%) scaleX(0);
     transition: transform 0.2s ease-in-out;
     z-index: -1;
-    background-color: #bef38c;
+    background-color: #f3d28c;
   }
 
   li:hover::after{
