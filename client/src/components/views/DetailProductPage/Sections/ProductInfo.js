@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Button, Descriptions } from 'antd'
+import { Button, Descriptions,message } from 'antd'
 import { useDispatch,useSelector } from 'react-redux'
 import { addToCart } from '../../../../_actions/user_actions'
 import moment from 'moment'
@@ -12,7 +12,8 @@ function ProductInfo(props) {
 
     const clickHandler = () => {
         if (user.userData && !user.userData.isAuth) {
-            return alert("먼저 로그인하세요")
+            return message.warning("먼저 로그인하세요");
+            alert("먼저 로그인하세요")
         } else {  // 필요한 정보를 장바구니에 넣어준다
             if (Waiting) {
                 console.log(nowTime)

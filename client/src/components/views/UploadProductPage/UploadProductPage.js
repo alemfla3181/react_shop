@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Typography, Button, Form, Input } from "antd";
+import { Typography, Button, Form, Input, message } from "antd";
 import FileUpload from "../../utils/FileUpload";
 import Axios from "axios";
 
@@ -64,7 +64,7 @@ function UploadProductPage(props) {
         Axios.post('/api/product', body)
             .then(response => {
                 if (response.data.success) {
-                    alert('상품 업로드에 성공 했습니다.')
+                    message.success("상품 업로드에 성공 했습니다.")
                     props.history.push('/')
                 } else {
                     alert('상품 업로드에 실패 했습니다.')
