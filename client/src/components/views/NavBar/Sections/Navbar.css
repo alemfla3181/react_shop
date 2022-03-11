@@ -20,24 +20,25 @@
   display: inline-block;
   font-size: 20px;
   padding: 20px;
-  text-shadow:0 0 24px;
-  color:slateblue;
+  text-shadow: 0 0 24px;
+  color: slateblue;
 }
 
-li{
+.menu__container li {
   position: relative;
   font-size: 15px;
   top: 2.5px;
   padding: 20px;
+  padding-bottom: 0;
   list-style: none;
   float: left;
 }
 
-li a{
+.menu__container li a {
   color: rgb(121, 106, 216);
 }
 
-li::after{
+.menu__container li::after {
   display: block;
   content: '';
   width: 100%;
@@ -47,33 +48,43 @@ li::after{
   background-color: rgb(169, 219, 252);
 }
 
-li:hover::after{
-  transform: translateY(20px) scaleX(1.5);  
+.menu__container li:hover::after {
+  transform: translateY(20px) scaleX(1.5);
 }
 
-.leftMenu{
+.leftMenu {
   float: left;
 }
 
-.rightMenu{
+.rightMenu {
   float: right;
 }
 
-.menu_drawer{
+.menu_drawer {
   display: none;
 }
 
-.badge{
-  padding-top: 0px;
-  transform: translateY(30%);
+.menu__container .badge li::after{
+  transform: translateY(0px) scaleX(0);
 }
 
-.badge_size{
+.menu__container .badge li:hover::after{
+  transform: translateY(0px) scaleX(1.5);
+}
+
+.badge{
+  transform:  translateY(-25%);
+}
+
+.badge_size {
+  transform:  translateY(30%);
   margin-right: 10px;
+  padding: 0;
+  margin: 0;
   font-size: 36px;
 }
 
-.icon{
+.icon {
   color: greenyellow;
 }
 
@@ -82,7 +93,8 @@ li:hover::after{
   height: 32px;
   padding: 6px;
   margin-top: 8px;
-  display: none !important; /* use of important to overwrite ant-btn */
+  display: none !important;
+  /* use of important to overwrite ant-btn */
   background: #3e91f7;
 }
 
@@ -98,7 +110,7 @@ li:hover::after{
 @media (max-width: 767px) {
   .menu {
     width: 100%;
-    padding: 10px 20px; 
+    padding: 10px 20px;
   }
 
   .menu__logo a {
@@ -106,17 +118,17 @@ li:hover::after{
     margin-left: -20px;
   }
 
-  .menu_drawer{
+  .menu_drawer {
     display: inline;
   }
 
-  li{
+  .menu__container li {
     display: flex;
     width: 100%;
     font-size: 16px;
   }
 
-  li::after{
+  .menu__container li::after {
     position: absolute;
     width: 100%;
     height: 40px;
@@ -126,11 +138,12 @@ li:hover::after{
     background-color: #ffefcc;
   }
 
-  li:hover::after{
-    transform: translateY(-20%) scaleX(2);  
+  .menu__container li:hover::after {
+    transform: translateY(-20%) scaleX(2);
   }
 
-  .leftMenu, .rightMenu {
+  .leftMenu,
+  .rightMenu {
     display: none;
   }
 
