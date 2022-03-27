@@ -2,6 +2,9 @@
 
 https://afternoon-thicket-94256.herokuapp.com/
 
+<img src="https://user-images.githubusercontent.com/47494999/160287659-18a02b02-28bb-4fc2-ab19-45c565940137.png" width="600" height="400" />
+
+
 기능
 - 로그인, 회원가입
 - 장바구니
